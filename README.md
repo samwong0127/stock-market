@@ -6,11 +6,11 @@ https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
 https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download
 ### Q1. Setup a data structure to retain all data from ETFs and stocks with the following columns.
 
-#### Idea 1 
+#### Idea 1a
 1. Use a SQL database to store all the data (import all data into the database with Python, parallelize imports by Spark?)
 2. Convert all data as a Parquet file by pyspark SQL (https://stackoverflow.com/questions/41498672/how-to-convert-an-500gb-sql-table-into-apache-parquet)
 
-#### Idead 2
+#### Idead 1b
 1. Load all data into a dataframe with the given columns with Python, parallelize import by Spark (Needs heavy RAMs)
 2. Convert dataframe to Parquet
 
@@ -20,3 +20,16 @@ Tasks:
 2. Similarly, calculate the rolling median and retain it in a newly added column adj_close_rolling_med.
 3. Retain the resulting dataset into the same format as Problem 1, but in its own stage/directory distinct from the first.
 4. (Bonus) Write unit tests for any relevant logic.
+
+#### Idea 2a
+1. We can calculate the moving average with Python directly by it's time consuming. We can speed up the process with Spark SQL as in COMP4442 project and the following method https://stackoverflow.com/questions/45806194/pyspark-rolling-average-using-timeseries-data
+
+### Q3. Integrate ML Training
+
+#### Idea 3
+1. Use the code given
+
+### Q4. Model Serving
+
+#### Idea 4
+1. Deploy the API server with the model through a suitable service
