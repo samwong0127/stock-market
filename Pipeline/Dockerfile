@@ -18,5 +18,5 @@ RUN unzip archive.zip
 # Install pip requirements
 RUN pip install -r requirements.txt
 
-#CMD ["python", "main.py"]
-CMD ["/bin/bash"]
+CMD ["python", "main.py"]
+#CMD ["/bin/bash"]
