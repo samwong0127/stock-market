@@ -1,4 +1,4 @@
-# Stock-market: Predicting the Volume of ETFs and stocks
+## Predicting the Volume of ETFs and stocks
 A work sample for the role of a Data Engineer
 
 https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
@@ -6,7 +6,7 @@ https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
 https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download
 
 ## Overview
-This project is assisted by ChatGPT and the full interaction is attached to /ChatGPT-interactions.
+This project is assisted by ChatGPT and the full interaction is attached to `/ChatGPT-interactions`.
 
 ### Q1. Setup a data structure to retain all data from ETFs and stocks with the following columns.
 
