@@ -1,9 +1,13 @@
-# stock-market
+# Stock-market: Predicting the Volume of ETFs and stocks
 A work sample for the role of a Data Engineer
 
 https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
 
 https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download
+
+## Overview
+This project is assisted by ChatGPT and the full interaction is attached to /ChatGPT-interactions.
+
 ### Q1. Setup a data structure to retain all data from ETFs and stocks with the following columns.
 
 #### Idea 1a
@@ -26,10 +30,31 @@ Tasks:
 
 ### Q3. Integrate ML Training
 
-#### Idea 3
-1. Use the code given
+#### Idea 3a
+1. Use the code given (Out of Memory Error)
+
+#### Idea 3b
+1. Use the ML models in PySpark
+https://spark.apache.org/docs/latest/ml-classification-regression.html#linear-regression
+
+Linear Regression Predictions using PySpark
+
+https://medium.com/@solom1913/linear-regression-predictions-using-pyspark-d0f283167040
+
+https://stackoverflow.com/questions/50453428/how-do-i-download-multiple-files-or-an-entire-folder-from-google-colab
+
+
 
 ### Q4. Model Serving
 
-#### Idea 4
+#### Idea 4a
 1. Deploy the API server with the model through a suitable service
+
+#### Idea 4b
+1. Run API with Google Colab 
+
+
+
+### Dockerize
+
+https://medium.com/hashmapinc/building-ml-pipelines-654daf4f23dc
