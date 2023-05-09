@@ -11,7 +11,9 @@ This project is aimed to develop a data pipeline to process a large dataset with
 2. Feature Engineering: Build some feature engineering on top of the dataset from Step 1
 3. Integrate ML training: Train Machine Learning model with the dataset from Step 2
 4. Model Serving: Serve the trained model with API
-The stock and ETF dataset used can be downloaded from https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download.  This project is assisted by ChatGPT and the full interaction is attached to `ChatGPT-interactions/`. Steps 1 - 3 are dockerized and combined under `pipeline/main.py`
+The stock and ETF dataset used can be downloaded from https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download.  This project is assisted by ChatGPT and the full interaction is attached to `ChatGPT-interactions/`. All tasks are developed with Google Colab (`/StockMarket.ipynb`) and Steps 1 - 3 are dockerized and combined under `pipeline/`. Step 4 is accomplished by running a Python Notebook with Google Colab.
+
+
 
 ### Q1. Setup a data structure to retain all data from ETFs and stocks with the following columns.
 
