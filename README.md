@@ -3,7 +3,6 @@ A work sample for the role of a Data Engineer
 
 https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
 
-https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download
 
 ## Overview
 This project is aimed to develop a data pipeline to process a large dataset with Spark as parallelization. There are 4 steps in the pipeline 
