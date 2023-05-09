@@ -6,7 +6,7 @@ https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
 https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download
 
 ## Overview
-This project is assisted by ChatGPT and the full interaction is attached to `/ChatGPT-interactions`.
+This project is aimed to develop a data pipeline to process a large dataset. This project is assisted by ChatGPT and the full interaction is attached to `/ChatGPT-interactions`.
 
 ### Q1. Setup a data structure to retain all data from ETFs and stocks with the following columns.
 
