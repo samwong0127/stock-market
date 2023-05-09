@@ -10,6 +10,9 @@ This project is aimed to develop a data pipeline to process a large dataset with
 3. Integrate ML training: Train Machine Learning model with the dataset from Step 2
 4. Model Serving: Serve the trained model with API
 
+### DAG
+![DAG](DAG.png)
+
 The stock and ETF dataset used can be downloaded from https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download. This project is assisted by ChatGPT and the full interaction is attached to `ChatGPT-interactions/`. All tasks are developed with Google Colab and details can be found in `StockMarket.ipynb`. Steps 1 - 3 are also dockerized and combined under `pipeline/` and Step 4 is accomplished by running a Python Notebook (`ModelServing.ipynb`) with Google Colab.
 
 # Data Ingestion
