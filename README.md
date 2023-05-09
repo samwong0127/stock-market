@@ -1,10 +1,10 @@
-## Pipelining ETFs and stocks data
+# Pipelining ETFs and stocks data
 A work sample for the role of a Data Engineer
 
 https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
 
 
-## Overview
+# Overview
 This project is aimed to develop a data pipeline to process a large dataset with Spark as parallelization. There are 4 steps in the pipeline 
 1. Data Ingestion: Ingest and process the raw data to a structured format for easy reading.
 2. Feature Engineering: Build some feature engineering on top of the dataset from Step 1
@@ -12,7 +12,8 @@ This project is aimed to develop a data pipeline to process a large dataset with
 4. Model Serving: Serve the trained model with API
 The stock and ETF dataset used can be downloaded from https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download.  This project is assisted by ChatGPT and the full interaction is attached to `ChatGPT-interactions/`. All tasks are developed with Google Colab and details can be found in `StockMarket.ipynb`. Steps 1 - 3 are also dockerized and combined under `pipeline/` and Step 4 is accomplished by running a Python Notebook (`ModelServing.ipynb`) with Google Colab.
 
-
+# Reference
+https://www.reddit.com/r/ChatGPT/comments/zm237o/save_your_chatgpt_conversation_as_a_markdown_file/
 
 ### Q1. Setup a data structure to retain all data from ETFs and stocks with the following columns.
 
