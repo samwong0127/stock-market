@@ -7,7 +7,7 @@
 # Set up Logging
 import logging
 from datetime import date
-import os
+#import os
 #print(os.getcwd())
 today = date.today()
 filename = str(today)+"-pipeline.log"
@@ -135,7 +135,7 @@ windowSpec = (
     Window()
     .partitionBy("Symbol")
     .orderBy(col("Date").cast("timestamp").cast("long"))
-    .rangeBetween(-29*86400, 0)                         # 86400 is the number of seconds a day
+    .rangeBetween(-29*86400, 0)                          # 86400 is the number of seconds a day
 )
 
 # Calculate the rolling 30-day median of the Adj_Close column
