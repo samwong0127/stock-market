@@ -7,17 +7,36 @@
 # Set up Logging
 import logging
 from datetime import date, datetime
-#import os
-#print(os.getcwd())
+import sys
 today = date.today()
 logFilePath = 'logs/' + str(today) + '-pipeline.log'
-#filename = os.path.join(os.getcwd(), str(today)+"-pipeline.log")
+
+'''
 logging.basicConfig(filename=logFilePath, 
                     #filemode='w',
                     level=logging.INFO, 
                     format='%(asctime)s, %(name)s %(levelname)s: %(message)s')
+'''
 
-logging.info("Started pipeline...")
+logger = logging.getLogger('my_logger')
+logger.setLevel(logging.INFO)
+
+# Create file handler and set level to INFO
+file_handler = logging.FileHandler(logFilePath)
+file_handler.setLevel(logging.INFO)
+
+# Create stream handler and set level to INFO
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setLevel(logging.INFO)
+
+# Set format for log messages
+formatter = logging.Formatter('%(asctime)s, %(name)s %(levelname)s: %(message)s')
+file_handler.setFormatter(formatter)
+stream_handler.setFormatter(formatter)
+
+# Add both handlers to the logger
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
 
 #######################
 #   Data Ingestion    #
@@ -28,11 +47,11 @@ import glob
 # Get the lists of all CSV files in the directory
 etf_list = glob.glob("etfs/*.csv")
 #print(etf_list)
-logging.info(f'A total of {len(etf_list)} ETFs found.')
+logger.info(f'A total of {len(etf_list)} ETFs found.')
 
 stock_list = glob.glob("stocks/*.csv")
 #print(stock_list)
-logging.info(f'A total of {len(stock_list)} stocks found.')
+logger.info(f'A total of {len(stock_list)} stocks found.')
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import input_file_name
@@ -42,7 +61,7 @@ from pyspark.sql.functions import input_file_name
 # Create a SparkSession
 # 
 spark = SparkSession.builder.appName("pipeline").getOrCreate()
-
+logger.info('Loading data from CSV')
 #
 # Read all CSV files as a Spark DataFrame and add a new column with the file name
 #
@@ -53,9 +72,8 @@ df = spark.read.csv(etf_list, header=True).withColumn("Symbol", input_file_name(
 #
 df = df.union(spark.read.csv(stock_list, header=True).withColumn("Symbol", input_file_name()))
 
-print(f'Total of Rows: {df.count()}, Columns: {len(df.columns)} combined.')
-logging.info('Combined all CSV files into a Spark DataFrame')
-logging.info(f'With Rows: {df.count()}, Columns: {len(df.columns)}')
+#print(f'Total of Rows: {df.count()}, Columns: {len(df.columns)} combined.')
+logger.info(f'Combined all CSV files into a Spark DataFrame with Rows: {df.count()}, Columns: {len(df.columns)}')
 
 #
 # Extract the filename from the "Symbol" column in the original DataFrame (df)
@@ -63,7 +81,7 @@ logging.info(f'With Rows: {df.count()}, Columns: {len(df.columns)}')
 from pyspark.sql.functions import regexp_extract
 df = df.withColumn("Symbol", regexp_extract(df["Symbol"], r"([^/]+)\.csv$", 1))
 #df.show()
-logging.info('Extracted Symbol from path')
+logger.info('Extracted Symbol from path')
 
 #
 # Change data type of columns 
@@ -76,7 +94,7 @@ df = df.withColumn("Open", col('Open').cast('float')) \
     .withColumn("Adj Close", col('Adj Close').cast('float')) \
     .withColumn("Volume", col('Volume').cast('int'))
 #df.printSchema()
-logging.info('Changed the data type of specific columns')
+logger.info('Changed the data type of specific columns')
 
 #
 # Read the metadata CSV file into a Spark DataFrame and select only the relevant columns
@@ -84,7 +102,7 @@ logging.info('Changed the data type of specific columns')
 metadata_df = spark.read.csv("symbols_valid_meta.csv", header=True)
 metadata_df = metadata_df.select("Symbol", "Security Name")
 #metadata_df.show()
-logging.info('Read metadata CSV file')
+logger.info('Read metadata CSV file')
 
 #
 # Join the original DataFrame (df) with the metadata DataFrame on the "Symbol" column
@@ -92,7 +110,7 @@ logging.info('Read metadata CSV file')
 df = df.join(metadata_df, on=["Symbol"], how="left")
 #df.show(10)
 #df.printSchema()
-logging.info('Security Name from metadata joined to etfs-stocks DataFrame')
+logger.info('Security Name from metadata joined to etfs-stocks DataFrame')
 
 #
 # Re-order and rename columns
@@ -106,19 +124,19 @@ df = df.select('Symbol','Security Name',
  'Adj Close',
  'Volume')
 df.show()
-logging.info('Columns re-ordered')
+logger.info('Columns re-ordered')
 
 df = df.withColumnRenamed("Security Name", "Security_Name")
 df = df.withColumnRenamed("Adj Close", "Adj_Close")
 #df.show()
-logging.info('Spaces in column names removed')
+logger.info('Spaces in column names removed')
 
 #
 # Save as Parquet
 #
 filename = str(today)+"-etfs_stocks.parquet"
 df.write.parquet(filename, mode="overwrite")
-logging.info(f'DataFrame saved as {filename}')
+logger.info(f'DataFrame saved as {filename}')
 
 #######################
 # Feature Engineering #
@@ -145,7 +163,7 @@ df2 = df.withColumn("vol_moving_avg", mean("Volume").over(windowSpec))
 # Show the resulting DataFrame
 #df2.show()
 #df2.printSchema()
-logging.info('Moving average of volume calculated')
+logger.info('Moving average of volume calculated')
 
 #
 # Calculate rolling median
@@ -163,14 +181,14 @@ df2 = df2.drop("list")
 # Show the resulting DataFrame
 df2.show()
 df2.printSchema()
-logging.info('Rolling median of Adj Close calculated')
+logger.info('Rolling median of Adj Close calculated')
 
 #
 # Save as Parquet
 #
 filename = str(today)+"-etfs_stocks_2.parquet"
 df2.repartition(1).write.parquet(filename, mode="overwrite")
-logging.info('DataFrame saved as a Parquet file')
+logger.info('DataFrame saved as a Parquet file')
 
 ############################
 #  Integrate ML Training   #
@@ -224,9 +242,9 @@ infoString = 'Model trained using PySpark ML\n'\
             +f'With r2: {trainingSummary.r2}\n'\
             +f'Number of Iterations: {trainingSummary.totalIterations}'
 
-print(infoString)
+#print(infoString)
 
-logging.info(infoString)
+logger.info(infoString)
 
 
 now = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -235,7 +253,7 @@ now = datetime.now().strftime("%Y%m%d-%H%M%S")
 modelPath = 'trained-models/' + str(now) + '-ps-lr-model'
 #joblib.dump(model, modelFileName)
 model.save(modelPath)
-logging.info(f'Model saved as {modelPath}')
+logger.info(f'Model saved as {modelPath}')
 
 
-logging.info('Training pipeline ended')
+logger.info('Pipeline ended')
