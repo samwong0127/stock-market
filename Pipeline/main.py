@@ -6,17 +6,18 @@
 
 # Set up Logging
 import logging
-from datetime import date
+from datetime import date, datetime
 #import os
 #print(os.getcwd())
 today = date.today()
-filename = str(today)+"-pipeline.log"
+logFilePath = 'logs/' + str(today) + '-pipeline.log'
 #filename = os.path.join(os.getcwd(), str(today)+"-pipeline.log")
-logging.basicConfig(filename=filename, 
-                    filemode='w', 
-                    level=logging.DEBUG, 
+logging.basicConfig(filename=logFilePath, 
+                    #filemode='w',
+                    level=logging.INFO, 
                     format='%(asctime)s, %(name)s %(levelname)s: %(message)s')
 
+logging.info("Started pipeline...")
 
 #######################
 #   Data Ingestion    #
@@ -208,24 +209,33 @@ lr = LinearRegression(labelCol='Volume',
 model = lr.fit(training_data)
 rf_predictions = model.transform(test_data)
 
-print("Coefficients: " + str(model.coefficients))
-print("Intercept: " + str(model.intercept))
+#print("Coefficients: " + str(model.coefficients))
+#print("Intercept: " + str(model.intercept))
 
 # Summarize the model over the training set and print out some metrics
 trainingSummary = model.summary
-print("RMSE: %f" % trainingSummary.rootMeanSquaredError)
-print("r2: %f" % trainingSummary.r2)
+#print("RMSE: %f" % trainingSummary.rootMeanSquaredError)
+#print("r2: %f" % trainingSummary.r2)
 
-logging.info('Model trained using PySpark ML\n'
-            +f'With Coefficients: {model.coefficients}\n'
-            +f'With Intercept: {model.intercept}\n'
-            +f'With RMSE: {trainingSummary.rootMeanSquaredError}\n'
-            +f'With r2: {trainingSummary.r2}\n'
-            +f'With loss: {model.getLoss()}')
+infoString = 'Model trained using PySpark ML\n'\
+            f'With Coefficients: {model.coefficients}\n'\
+            +f'With Intercept: {model.intercept}\n'\
+            +f'With RMSE: {trainingSummary.rootMeanSquaredError}\n'\
+            +f'With r2: {trainingSummary.r2}\n'\
+            +f'Number of Iterations: {trainingSummary.totalIterations}'
+
+print(infoString)
+
+logging.info(infoString)
 
 
+now = datetime.now().strftime("%Y%m%d-%H%M%S")
+#print(now)
 # save the model to disk
-filename = str(today) + '-lr-model'
-#joblib.dump(model, filename)
-model.save(filename)
-logging.info(f'Model saved as {filename}')
+modelPath = 'trained-models/' + str(now) + '-ps-lr-model'
+#joblib.dump(model, modelFileName)
+model.save(modelPath)
+logging.info(f'Model saved as {modelPath}')
+
+
+logging.info('Training pipeline ended')
