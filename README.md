@@ -13,7 +13,7 @@ This project is aimed to develop a data pipeline to process a large dataset with
 ### DAG
 ![DAG](/pictures/DAG.png)
 
-The stock and ETF dataset used can be downloaded from https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download. This project is assisted by ChatGPT and the full interaction is attached to `ChatGPT-interactions/`. All tasks are developed with Google Colab and details can be found in `StockMarket.ipynb`. Steps 1 - 3 are also dockerized and combined under `pipeline/` and Step 4 is accomplished by running a Python Notebook (`ModelServing.ipynb`) with Google Colab.
+The stock and ETF dataset used can be downloaded from https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download. This project is assisted by ChatGPT and the full interaction is attached to `ChatGPT-interactions/`. Most of the tasks are developed with Google Colab and details can be found in `draft/StockMarket.ipynb`. Steps 1 - 3 are also dockerized and combined under `pipeline/`. Step 4 can be accomplished by running a Python Notebook (`model-serving/ModelServing-GoogleColab.ipynb`) with Google Colab or a local API server.
 
 # Data Ingestion
 Spark DataFrame is used to set up a data structure to retain all data from ETFs and stocks because it is faster and consumes less memory than Pandas DataFrame. The lists of paths of CSV files are created and read into a DataFrame together with their symbols. Their security names, column types, column names are added and changed afterwards. After ingesting the data, the resulting DataFrame is saved as in a Parquet format. In addition, the dataset can be maintained easier by saving into a SQL database. (Link to dataset: https://drive.google.com/file/d/1NKYjKmdH_B3LXxW_f3P3xSTxKqhOprF-/view?usp=share_link)
@@ -37,6 +37,8 @@ https://spark.apache.org/docs/latest/ml-classification-regression.html#linear-re
 https://medium.com/@solom1913/linear-regression-predictions-using-pyspark-d0f283167040
 
 # Model Serving
+
+## By Google Colab
 To serve the trained model, a `/predict` API is run by Google Colab and users can access the API by visiting the link printed and appending required parameters such as `/predict?vol_moving_avg=12345&adj_close_rolling_med=25`
 
 **Index page**
@@ -46,6 +48,9 @@ To serve the trained model, a `/predict` API is run by Google Colab and users ca
 **API serving**
 
 ![/predict](/pictures/model-serving-2.jpg)
+
+## By local API
+Details in `model-serving/ModelServing-local.ipynb`.
 
 **References:**
 
