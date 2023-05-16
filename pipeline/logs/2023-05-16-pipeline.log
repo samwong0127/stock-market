@@ -1,0 +1,23 @@
+2023-05-16 10:24:03,733, my_logger INFO: Started training pipeline...
+2023-05-16 10:24:03,733, my_logger INFO: Started Spark ML training pipeline...
+2023-05-16 10:30:03,277, my_logger INFO: Started training pipeline...
+2023-05-16 10:30:03,277, my_logger INFO: Started Spark ML training pipeline...
+2023-05-16 10:30:41,964, my_logger INFO: Data loaded as Spark DataFrame
+2023-05-16 10:31:38,180, my_logger INFO: Model trained using PySpark ML
+With Coefficients: [0.9962800736739608,-2.9409586777164146e-17]
+With Intercept: 8974.071293704608
+With RMSE: 3914209.2577847512
+With r2 score: 0.845360305090306
+Number of Iterations: 8
+2023-05-16 10:31:40,138, my_logger INFO: Model saved as trained-models/20230516-103138-ps-lr-model
+2023-05-16 10:31:40,437, my_logger INFO: Started Scikit-learn training pipeline...
+2023-05-16 10:32:47,424, my_logger INFO: Loaded dataset as Pandas DataFrame
+2023-05-16 10:33:04,725, my_logger INFO: Start training...
+2023-05-16 10:33:05,404, my_logger INFO: Finish training...
+2023-05-16 10:33:05,435, my_logger INFO: Model trained using Scikit-learn
+With mean_absolute_error: 370749.5297
+With RMSE: 2629060.73181729
+With r2 score: 0.8009874801208422
+
+2023-05-16 10:33:05,781, my_logger INFO: Model saved as trained-models/20230516-103305-sk-lr-model
+2023-05-16 10:33:05,781, my_logger INFO: Training pipeline ended
