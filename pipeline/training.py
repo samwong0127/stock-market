@@ -1,3 +1,14 @@
+################################################################################
+#                                                                              #
+#    Before running this file                                                  #
+#                                                                              #
+################################################################################
+
+# This file is used to train ML models only and 
+# Please change the path below to your dataset 
+
+datasetPath = 'D:\RiskThinkingAI\etfs_stocks_2.parquet'
+
 
 
 ################################################################################
@@ -58,9 +69,8 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName('pipeline').getOrCreate()
 
-
-datasetPath = 'D:\RiskThinkingAI\etfs_stocks_2.parquet'
 # Read from Parquet
+logger.info("Loading dataset...")
 #parDF=spark.read.parquet('/content/drive/MyDrive/RiskThinkingAI/etfs2.parquet')
 df=spark.read.parquet(datasetPath)
 logger.info("Data loaded as Spark DataFrame")
@@ -150,6 +160,7 @@ features = ['vol_moving_avg', 'adj_close_rolling_med']
 target = 'Volume'
 
 
+logger.info("Loading dataset...")
 data = pd.read_parquet(datasetPath, columns=[features].append('Volume'))
 infoString = 'Loaded dataset as Pandas DataFrame'
 #print(infoString)
