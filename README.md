@@ -41,6 +41,10 @@ https://medium.com/@solom1913/linear-regression-predictions-using-pyspark-d0f283
 
 # Model Serving
 
+## By local API
+The model used in this case is a Random Forest Regressor model trained with a sample of the dataset as a demonstration. The local server can be run by `python api.py` and it will load the model from `trained-models` folder. The responses from the API are shown in `StockMarket.ipynb` and dependencies of the API are listed in `model-serving\requirements.txt`.
+
+
 ## By Google Colab
 To serve the trained model, a `/predict` API is run by Google Colab and users can access the API by visiting the link printed and appending required parameters such as `/predict?vol_moving_avg=12345&adj_close_rolling_med=25`. The model used in this case is a Linear Regression model trained with the whole dataset as a demonstration.
 
@@ -52,8 +56,6 @@ To serve the trained model, a `/predict` API is run by Google Colab and users ca
 
 ![/predict](/pictures/model-serving-2.jpg)
 
-## By local API
-The model used in this case is a Random Forest Regressor model trained with a sample of the dataset as a demonstration. Details can be found in `model-serving/ModelServing-local.ipynb`.
 
 **References:**
 
