@@ -40,7 +40,7 @@ except:
 
 # Load trained Scikit-learn model
 model = joblib.load(r'trained-models\20230512-132900-sk-lr-model')
-#print('Scikit-learn ML model loaded.')
+print('Scikit-learn ML model loaded.')
 
 def volume_prediction(model, data):
 
