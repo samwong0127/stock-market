@@ -1,6 +1,7 @@
 # Pipelining ETFs and stocks data
 A work sample for the role of a Data Engineer
 
+Inspired by RiskThinkingAI
 
 # Overview
 This project is aimed to develop a data pipeline to process a large dataset with Spark as parallelization. There are 4 steps in the pipeline 
