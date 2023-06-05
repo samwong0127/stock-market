@@ -1,4 +1,4 @@
-FROM pyspark/pyspark:3.1.1
+FROM python:3.8.0
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
