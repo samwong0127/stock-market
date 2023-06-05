@@ -78,3 +78,5 @@ Dockerization
 
 https://medium.com/hashmapinc/building-ml-pipelines-654daf4f23dc
 
+https://levelup.gitconnected.com/how-to-run-spark-with-docker-c6287a11a437
+
