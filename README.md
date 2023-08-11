@@ -32,6 +32,10 @@ To train a Machine Learning model to predict the `Volume` of the stock market, M
 
 Meanwhile, there are built-in ML models in PySpark with distributed implementations and are fully integrated with Spark's distributed computing feature. The trained model can be saved with built-in `save()` function and can be retreived by E.g. `pyspark.ml.regression.LinearRegressionModel.load(path)`.
 
+-----
+In addition, the data ingestion, feature engineering, and ML training process can be integrated into a data pipeline using **Apache Airflow**.
+
+-----
 
 **References:**
 
