@@ -1,7 +1,7 @@
 # Pipelining ETFs and stocks data
 A work sample for the role of a Data Engineer
 
-Inspired by https://github.com/RiskThinking/work-samples/blob/main/Data-Engineer.md
+Inspired by RiskThinkingAI
 
 # Overview
 This project is aimed to develop a data pipeline to process a large dataset with Spark as parallelization. There are 4 steps in the pipeline 
@@ -81,4 +81,6 @@ https://stackoverflow.com/questions/50453428/how-do-i-download-multiple-files-or
 Dockerization
 
 https://medium.com/hashmapinc/building-ml-pipelines-654daf4f23dc
+
+https://levelup.gitconnected.com/how-to-run-spark-with-docker-c6287a11a437
 
