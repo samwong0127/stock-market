@@ -5,7 +5,7 @@
 ################################################################################
 
 # This file is used to train ML models only and 
-# Please change the path below to your dataset 
+# Please change the path below to your's 
 
 datasetPath = 'D:\RiskThinkingAI\etfs_stocks_2.parquet'
 
