@@ -1,6 +1,6 @@
 #
 # Before running the docker container
-# Please make sure to unzip the archive.zip
+# Please make that the archive.zip, which is the dataset, is unzipped
 # You may need to edit the file path
 #
 
