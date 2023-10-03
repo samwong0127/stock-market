@@ -10,6 +10,9 @@ This project is aimed to develop a data pipeline to process a large dataset with
 3. Integrate ML training: Train the Machine Learning model with the dataset from Step 2
 4. Model Serving: Serve the trained model with API
 
+# Important Note
+Because of naming issues, there are two folders with similar name but different capitalization (`Pipeline` and `pipeline`) shown on GitHub while there is only one `pipeline` folder on my Windows machine. After inspecting the files on GitHub, I conclude that they should be under the same `pipeline` folder and I will find a way to fix the naming issue. Therefore, viewers who wanna try out the pipeline should move all files in `Pipeline` to `pipeline` after cloning.
+
 ### DAG
 ![DAG](/pictures/DAG.png)
 
